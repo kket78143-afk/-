@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>дом</title>
+<style>
+  body {
+    background-color: #7eedfc; /* исправлено spelling и помещено внутрь <style> */
+  }
+</style>
+<style>
+    .page {
+        display: none; 
+    }
+    .show {
+        display: block; 
+    }
+.page img {                                                           /* фото*/
+  width: 250px;
+  height: auto;
+  border-radius: 12px;
+  border: 3px solid #330aee;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  display: block;
+  margin: 40px auto 10px auto;
+}
+.page .img1 {                                       /*фото умения*/
+  border-color: rgb(255, 251, 0);
+  width: 300px;
+  position: relative; /* добавьте позиционирование */
+  left: 150px; /* задайте нужное смещение */
+  top: 0; 
+   position: relative; /* или absolute */
+  left: 500px; 
+  top: 215px;  
+}
+.page .img2 {
+  border-color: rgb(255, 255, 255);
+  width: 300px;
+  position: relative;
+  left: 150px; 
+  top: 0; 
+}
+.page .img3 {                                       
+  border-color: rgb(255, 251, 0);
+  width: 300px;
+  position: relative; /* позиционирование */
+  left: 150px; /*  нужное смещение */
+  top: 0; 
+   position: relative; 
+  top: -215px;  
+  left: -200px;     
+}
+.page .img4 {                                       
+  border-color: rgb(23, 3, 49);
+  width: 300px;
+  position: relative; /* позиционирование */
+  left: 150px; /*  нужное смещение */
+  top: 0; 
+   position: relative; 
+  top: -425px;  
+  left: -550px;     
+}
+
+.page.show {
+  display: block;                                          /* стиль кнапок */
+}nav button {
+  padding: 10px 20px;
+  margin: 5px;                                                       
+  background-color: #10879c; 
+  color: white; /* текст  */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+border-radius: 15px                     /*округление*/
+}
+nav button:hover {
+  background-color: #45a049;                                 /*  кнапки темнеют */
+}
+     .page p {                                 /*текст*/
+     margin-top: 55px;
+     font-size: 25px;
+     text-align: center;
+      left: 800px;
+}
+ .page p.p1 {
+    position: relative;
+    margin-top: 20px;
+    font-size: 20px;
+    text-align: center;
+    left: 0px;
+    bottom: 34px;
+ }
+  .audio-img1 {                                    
+  border-color: rgb(15, 15, 15);
+  width: 300px;
+  position: relative; /* добавьте позиционирование */
+  left: 150px; /* задайте нужное смещение */
+  top: 0; 
+   position: relative; /* или absolute */
+  left: 500px; 
+  top: 215px;  
+}
+</style>
+</head>
+<body>
+<header>
+    <nav>
+        <button data-group=".page" data-target="page-1">профиль</button>
+        <button data-group=".page" data-target="page-2">апи</button>
+        <button data-group=".page" data-target="page-3">навыки</button>
+    </nav>
+</header>
+
+<main>
+    <div class="page" id="page-1">
+       <img src="D:\лол\IMG_20260401_020954_918.jpg"/>  
+        <p>Гаджиев Ислам Ризванович</p>               
+         <p class="p1"> Учусь к колледже IThub на фронтенд-разработчика</p>
+    </div>
+    <div class="page" id="page-2">            
+     <h2>Факты о котах </h2>
+     <button onclick="getFact()">Новый факт</button>
+     <p id="result"></p>
+    </div> 
+    <div class="page" id="page-3">
+        <img src="file:///D:/лол/i.webp" class="img1" title="я владею базовами навыками" />
+        <img src="file:///D:/лол/ее.webp" class="img2"  title="я владею базовами навыками"/>
+        <img src="file:///D:/лол/hoi.webp"  class="img3"  title="я владею базовами навыками"/>
+        <img src="D:\лол\jhjh.webp"  class="img4"  title="я владею базовами навыками"/>
+    </div>
+</main>     
+   <script>
+        // Наше "фейковое API" — просто массив с данными
+        const fakeAPI = {
+            facts: [
+                "Коты спят 16 часов в день",
+                "У кота 32 мышцы в каждом ухе",
+                "Коты не чувствуют сладкий вкус",
+                "Сердце кота бьётся 110-140 ударов в минуту",
+                "Коты мурлыкают на частоте 25-150 Гц"
+            ],
+            getRandomFact: function() {
+                const randomIndex = Math.floor(Math.random() * this.facts.length);
+                return this.facts[randomIndex];
+            }
+        };
+
+        function getFact() {
+            const fact = fakeAPI.getRandomFact();
+            document.getElementById('result').innerHTML = fact;
+        }
+
+        // Показываем первый факт при загрузке
+        getFact();
+    </script>
+<script>
+    document.querySelectorAll('button[data-group]').forEach(button => {
+        button.onclick = event => {
+            const targetClass = event.currentTarget.dataset.group; // ".page"
+            const targetId = event.currentTarget.dataset.target; // например, "page-1"
+            document.querySelectorAll(targetClass).forEach(element => {
+                element.classList.toggle('show', element.id === targetId);
+            });
+        };
+    });
+    
+</script>
+</body>
+</html>
